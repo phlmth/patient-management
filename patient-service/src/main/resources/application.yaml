@@ -1,6 +1,7 @@
 spring:
   application:
     name: patient-service
+
   h2:
     console:
       path: /h2-console
@@ -22,3 +23,7 @@ spring:
 
 server:
   port: 4000
+
+logging:
+  level:
+    root: info

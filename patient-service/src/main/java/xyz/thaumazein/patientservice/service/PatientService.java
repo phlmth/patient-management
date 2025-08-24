@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import xyz.thaumazein.patientservice.dto.PatientRequest;
 import xyz.thaumazein.patientservice.dto.PatientResponse;
+import xyz.thaumazein.patientservice.exception.EmailAlreadyExistsException;
 import xyz.thaumazein.patientservice.mapper.PatientMapper;
 import xyz.thaumazein.patientservice.repository.PatientRepository;
 
@@ -19,7 +20,12 @@ public class PatientService {
     }
 
     public PatientResponse createPatient(PatientRequest request) {
+        if (patientRepository.existsByEmail(request.email())) {
+            throw new EmailAlreadyExistsException("A patient with this email already exists: %s".formatted(request.email()));
+        }
+
         var patient = patientRepository.save(PatientMapper.toEntity(request));
+
         return PatientMapper.toDto(patient);
     }
 }
