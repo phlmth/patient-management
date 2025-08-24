@@ -3,6 +3,7 @@ package xyz.thaumazein.patientservice.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import xyz.thaumazein.patientservice.validation.CreatePatientValidationGroup;
 
 public record PatientRequest(
         @NotBlank(message = "Name is required")
@@ -19,7 +20,7 @@ public record PatientRequest(
         @NotBlank(message = "Date of birth is required")
         String dateOfBirth,
 
-        @NotBlank(message = "Registered date is required")
+        @NotBlank(groups = CreatePatientValidationGroup.class, message = "Registered date is required")
         String registeredDate
 
 ) {

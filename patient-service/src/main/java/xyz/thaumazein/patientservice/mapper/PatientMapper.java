@@ -27,4 +27,11 @@ public class PatientMapper {
 
         return patient;
     }
+
+    public static void update(PatientRequest request, Patient patient) {
+        patient.setName(request.name());
+        patient.setAddress(request.address());
+        patient.setEmail(request.email());
+        patient.setDateOfBirth(LocalDate.parse(request.dateOfBirth()));
+    }
 }

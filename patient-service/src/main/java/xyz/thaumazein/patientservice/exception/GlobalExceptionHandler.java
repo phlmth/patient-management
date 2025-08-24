@@ -2,6 +2,7 @@ package xyz.thaumazein.patientservice.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,5 +30,12 @@ public class GlobalExceptionHandler {
 
         log.warn("Email address already exists {}", ex.getMessage());
         return ResponseEntity.badRequest().body(Map.of("error", "Email address already exists"));
+    }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handlePatientNotFoundException(PatientNotFoundException ex) {
+
+        log.warn("Patient not found {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body((Map.of("error", "Email address already exists")));
     }
 }
