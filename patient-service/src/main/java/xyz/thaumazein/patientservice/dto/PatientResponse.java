@@ -1,4 +1,4 @@
-package xyz.thaumazein.patientservice.dtos;
+package xyz.thaumazein.patientservice.dto;
 
 import java.time.LocalDate;
 import java.util.UUID;

@@ -1,8 +1,8 @@
-package xyz.thaumazein.patientservice.repositories;
+package xyz.thaumazein.patientservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import xyz.thaumazein.patientservice.entities.Patient;
+import xyz.thaumazein.patientservice.entity.Patient;
 
 import java.util.UUID;
 

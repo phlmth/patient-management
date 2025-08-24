@@ -1,7 +1,10 @@
 package xyz.thaumazein.patientservice.mapper;
 
-import xyz.thaumazein.patientservice.dtos.PatientResponse;
-import xyz.thaumazein.patientservice.entities.Patient;
+import xyz.thaumazein.patientservice.dto.PatientRequest;
+import xyz.thaumazein.patientservice.dto.PatientResponse;
+import xyz.thaumazein.patientservice.entity.Patient;
+
+import java.time.LocalDate;
 
 public class PatientMapper {
     public static PatientResponse toDto(Patient patient) {
@@ -11,5 +14,17 @@ public class PatientMapper {
                 patient.getEmail(),
                 patient.getAddress(),
                 patient.getDateOfBirth());
+    }
+
+    public static Patient toEntity(PatientRequest request) {
+        var patient = new Patient();
+
+        patient.setName(request.name());
+        patient.setEmail(request.email());
+        patient.setAddress(request.address());
+        patient.setDateOfBirth(LocalDate.parse(request.dateOfBirth()));
+        patient.setRegisteredDate(LocalDate.parse(request.registeredDate()));
+
+        return patient;
     }
 }
